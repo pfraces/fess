@@ -20,12 +20,13 @@
 var httpProxy = require('http-proxy');
 var url = require('url');
 var cookieRewrite = require('../utils/cookieRewrite');
+var echo = require('../utils/echo');
 
 module.exports = function (target, options) {
   target = url.parse(target);
   options = options || {};
 
-  var log = options.log || console.log;
+  var log = options.log || echo;
 
   var host = url.format({
     protocol: target.protocol,
@@ -49,7 +50,7 @@ module.exports = function (target, options) {
     res.end(msg);
   });
 
-  proxy.on('proxyRes', function (proxyRes, req, res) {
+  proxy.on('proxyRes', function (proxyRes, req /* , res */) {
     log(req.url.replace(path, '') + ' -> ' + host + req.url);
 
     var headers = proxyRes.headers;

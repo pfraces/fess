@@ -17,13 +17,26 @@
     "freddie": "src/cli.js"
   },
   "dependencies": {
-    "connect": "*",
-    "serve-static": "*",
-    "http-proxy": "*",
-    "cookie": "*",
-    "minimist": "*",
-    "strip-json-comments": "*",
-    "dummy-json": "*"
+    "connect": "^3.4.1",
+    "cookie": "^0.3.1",
+    "dummy-json": "^1.0.1",
+    "http-proxy": "^1.13.3",
+    "minimist": "^1.2.0",
+    "serve-static": "^1.11.1",
+    "strip-json-comments": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.12.0",
+    "husky": "^0.11.4"
+  },
+  "scripts": {
+    "lint": "eslint src/**/*.js",
+    "test": "npm run lint",
+    "precommit": "npm test",
+    "postversion": "git push origin master && git push --tags && npm publish",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major"
   },
   "keywords": [
     "static",

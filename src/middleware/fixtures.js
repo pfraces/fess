@@ -3,6 +3,7 @@ var path = require('path');
 var url = require('url');
 var dummyJSON = require('dummy-json');
 var stripComments = require('strip-json-comments');
+var echo = require('../utils/echo');
 
 var HTTP = {
   ERR_NONE: 200,
@@ -17,7 +18,7 @@ var isDefined = function (arg) {
 module.exports = function (root, options) {
   options = options || {};
 
-  var log = options.log || console.log;
+  var log = options.log || echo;
 
   return function (req, res) {
     var pathname = url.parse(req.url).pathname;
