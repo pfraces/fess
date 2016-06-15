@@ -20,8 +20,15 @@ if (argv.c) { argv.config = argv.c; }
 if (argv.r) { argv.root = argv.r; }
 if (argv.p) { argv.port = argv.p; }
 
-if (argv.version) { return log(pkg.version); }
-if (argv.help) { return log(readFile(__dirname, '..', 'README.md')); }
+if (argv.version) {
+  log(pkg.version);
+  process.exit();
+}
+
+if (argv.help) {
+  log(readFile(__dirname, '..', 'README.md'));
+  process.exit();
+}
 
 var configFile = argv.config || ('.' + pkg.name + '.json'),
     config = argv.noconf ? null : readJSON(configFile);
